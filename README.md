@@ -1,3 +1,7 @@
+This repository contains full working examples for the 
+
+[Understanding the weird parts of Typescript]("https://medium.com/@moshekerbel/understanding-the-weird-parts-of-typescript-20c0fe26d314") post
+
 To play around with the examlpes, simply clone the repostiry and run:
 ```
 yarn
