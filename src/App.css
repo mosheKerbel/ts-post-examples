@@ -1,3 +1,8 @@
 th {
   cursor: pointer;
 }
+
+.toggle {
+  cursor: pointer;
+  color: blue;
+}

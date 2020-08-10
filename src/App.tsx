@@ -1,41 +1,29 @@
 import React, { useState } from "react";
-import Table from "./Table";
+import TableExample from "./TableExample";
+import MyModal from "./Components/MyModal"; // First example - using Omit
+// import MyModal from "./Components/MyModal2"; // Second example - using Pick
+// import MyModal from "./Components/MyModal3"; // Third example - using Partial
 
 import "./App.css";
 
-type Candidate = {
-  id: string;
-  firstName: string;
-  lastName: string;
-  age: number;
-};
-
-const cols: Array<keyof Candidate> = ["firstName", "lastName", "age"];
-
-const candidatesList: Array<Candidate> = [
-  { id: "3", firstName: "Dan", lastName: "Gilbert", age: 32 },
-  { id: "2", firstName: "Olivia", lastName: "Smith", age: 35 },
-  { id: "1", firstName: "Emma", lastName: "Miller", age: 30 },
-];
-
-const onRowClick = (row: Candidate) =>
-  console.log(`The selected candidate is ${row.firstName} ${row.lastName}`);
-
 const App = () => {
-  const [candidates, setCandidates] = useState(candidatesList);
-  const onSortClick = (col: keyof Candidate) => {
-    const sort = (candidateA: Candidate, candidateB: Candidate) =>
-      candidateA[col] < candidateB[col] ? -1 : 1;
-    setCandidates([...candidates].sort(sort));
-  };
-
+  const [modalOpen, setModalOpen] = useState(false);
+  const toggleModal = () => setModalOpen(!modalOpen);
   return (
-    <Table<Candidate>
-      rows={candidates}
-      cols={cols}
-      onRowClick={onRowClick}
-      onSortClick={onSortClick}
-    />
+    <div>
+      <h1>Table Example</h1>
+      <TableExample />
+      <h1>Modal Example</h1>
+      <div onClick={toggleModal} className={"toggle"}>
+        Open modal
+      </div>
+      <MyModal isOpen={modalOpen} width={400} height={400}>
+        <div onClick={toggleModal} className={"toggle"}>
+          Close
+        </div>
+        <h2>Hello world</h2>
+      </MyModal>
+    </div>
   );
 };
 
